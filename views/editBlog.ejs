@@ -1,0 +1,60 @@
+<%- include('partials/header.ejs') %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit <%= blog.title %></title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="card shadow-lg rounded-4 p-4">
+      <h2 class="mb-4 text-center">✏️ Edit Blog: <%= blog.title %></h2>
+
+      <form action="/edit/<%= blog._id %>" method="POST" class="row g-3">
+        <div class="col-12">
+          <label for="title" class="form-label fw-semibold">Title</label>
+          <input type="text" name="title" id="title" class="form-control" value="<%= blog.title %>" required>
+        </div>
+
+        <div class="col-12">
+          <label for="content" class="form-label fw-semibold">Content</label>
+          <textarea name="content" id="content" rows="5" class="form-control" required><%= blog.content %></textarea>
+        </div>
+
+        <div class="col-12">
+          <label for="category" class="form-label fw-semibold">Category</label>
+          <!-- <input type="text" name="category" id="category" class="form-control" value="<%= blog.category %>" required> -->
+          <select class="form-control"  name="category" id="category" class="form-control" value="<%= blog.category %>" required>
+            <option value="">-- Select Category --</option>
+            <option>World</option>
+            <option>India</option>
+            <option>Technology</option>
+            <option>Design</option>
+            <option>Culture</option>
+            <option>Business</option>
+            <option>Politics</option>
+            <option>Opinion</option>
+            <option>Science</option>
+            <option>Health</option>
+            <option>Style</option>
+            <option>Travel</option>
+          </select>
+       
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+          <a href="/blog/<%= blog._id %>" class="btn btn-secondary rounded-pill px-4">⬅️ Back</a>
+          <button type="submit" class="btn btn-success rounded-pill px-4">💾 Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+<%- include('partials/footer.ejs') %>

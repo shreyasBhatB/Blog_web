@@ -1,0 +1,79 @@
+<!-- Partials/Header.ejs (or directly in index.ejs) -->
+<nav class="navbar navbar-expand-lg navbar-light shadow-sm" style="background-color: #007bff;">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-white" href="/" style="font-size: 1.75rem;">Blog Showcase</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item active">
+          <a class="nav-link text-white fw-bold" href="/" style="transition: color 0.3s ease;">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/addblog">Create</a>
+        </li>
+        <!-- Category filter dropdown -->
+        <li class="nav-item">
+          <form method="GET" action="/category" class="d-flex">
+            <select class="form-select " name="category" onchange="this.form.submit()" style="border-radius: 25px; padding: 0.5rem 1rem; transition: all 0.3s ease;">
+              <option value="" disabled selected>Category</option>
+              <option value="World">World</option>
+              <option value="India">India</option>
+              <option value="Technology">Technology</option>
+              <option value="Design">Design</option>
+              <option value="Culture">Culture</option>
+              <option value="Business">Business</option>
+              <option value="Politics">Politics</option>
+              <option value="Opinion">Opinion</option>
+              <option value="Science">Science</option>
+              <option value="Health">Health</option>
+              <option value="Style">Style</option>
+              <option value="Travel">Travel</option>
+            </select>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Add custom CSS for navbar -->
+<style>
+  .navbar {
+    background-color: #007bff; /* Soft blue */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+  }
+
+  .navbar .nav-link {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #ffffff; /* White text for the links */
+  }
+
+  .navbar .nav-link:hover {
+    color: #f8f9fa; /* Light text on hover */
+    text-decoration: underline;
+  }
+
+  .navbar-toggler {
+    border-color: #ffffff; /* White border for the toggler */
+  }
+
+  .navbar-toggler-icon {
+    background-color: #ffffff; /* White icon */
+  }
+
+  .form-select {
+    background-color: #ffffff; /* White background */
+    border-radius: 25px; /* Rounded edges */
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .form-select:focus {
+    box-shadow: 0 0 0 0.25rem rgba(38, 143, 255, 0.5); /* Light blue shadow on focus */
+    border-color: #007bff; /* Blue border when focused */
+  }
+</style>

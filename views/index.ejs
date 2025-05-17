@@ -1,0 +1,145 @@
+<%- include('partials/header.ejs') %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Showcase</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+      color: #333;
+    }
+
+    h1, h3 {
+      color: #343a40;
+      font-weight: 600;
+    }
+
+    .form_ {
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      border-radius: 5px;
+      border: 1px solid #ced4da;
+    }
+
+    .form-group input[type="submit"] {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      font-size: 16px;
+    }
+
+    .form-group input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    .latest-article {
+      background: #f0f4f7;
+      border-radius: 10px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .latest-article .display-4 {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .latest-article .lead {
+      font-size: 1.1rem;
+    }
+
+    .all_blogs .row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .all_blogs .col-md-6 {
+      margin-bottom: 1.5rem;
+    }
+
+    .all_blogs .row .card {
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .all_blogs .row .card:hover {
+      transform: translateY(-10px);
+    }
+
+    .all_blogs .card-body {
+      padding: 1.5rem;
+    }
+
+    .all_blogs .card-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .all_blogs .btn {
+      color: #007bff;
+      font-weight: bold;
+    }
+
+    .all_blogs .btn:hover {
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+
+
+<!-- Latest article -->
+<% if (blogs.length > 0) { %>
+<section class="latest-article py-4">
+  <div class="container">
+    <div class="p-4 p-md-5 mb-4 rounded bg-body-secondary">
+      <div class="px-0">
+        <h2>Latest</h2>
+        <h3 class="display-4 fst-italic"><%= blogs[blogs.length - 1].title %></h>
+        <h4 class="mb-2 text-muted"><%= blogs[blogs.length - 1].category %></h4>
+        <p class="lead my-3"><%= blogs[blogs.length - 1].content %></p>
+        
+        <!-- <p class="lead mb-0"><a href="/blog/<%= blogs[blogs.length - 1]._id %>" class="text-body-emphasis fw-bold">Continue reading...</a></p> -->
+      </div>
+    </div>
+  </div>
+</section>
+<% } %>
+
+<!-- All Blogs -->
+<section class="all_blogs py-4">
+  <div class="container">
+    <div class="row">
+      <% blogs.forEach(blog => { %>
+      <div class="col-md-6">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <strong class="d-inline-block mb-2 text-primary"><%= blog.category %></strong>
+            <h3 class="card-title mb-2"><%= blog.title %></h3>
+            <p class="card-text"><%= blog.content.substring(0, 100) %>...</p>
+            <a href="/blog/<%= blog._id %>" class="btn btn-link">Continue reading</a>
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+<%- include('partials/footer.ejs') %>
