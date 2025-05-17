@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import Blog from './models/blogs.js';
+import Users from './models/user.js';
 
 const app = express();
 const port = 3000;
@@ -45,6 +46,57 @@ app.get('/category', async (req, res) => {
 app.get('/addblog',(req,res)=> {
   res.render('addblog.ejs');
 });
+
+app.get('/login',(req,res)=>{
+  res.render('login.ejs')
+  
+})
+app.get('/register',(req,res)=>{
+  res.render('register.ejs')
+}
+);
+
+app.post('/login',async (req,res)=>{
+  console.log(req.body.username,req.body.password);
+  const user=req.body.username
+  const password=req.body.password
+
+  const result=await Users.findOne({username:user})
+  if(result){
+      if(result.password===password){
+        res.redirect('/')
+      }
+      else{
+        res.redirect('/login')
+      }
+    }
+      else{
+        res.redirect('/register')
+      }
+  
+  console.log(result);
+
+})
+
+
+app.post('/register',async (req,res)=>{
+  console.log(req.body.username,req.body.password);
+  const user=req.body.username
+  const password=req.body.password
+
+  const result=await Users.findOne({username:user})
+  if(result){
+      res.redirect('/register')
+      }
+      else{
+        const newUser=await Users.insertOne({username:user,password:password})
+        res.redirect('/login')
+      }
+  
+  
+
+
+})
 
 // Submit Route - Handles the submission of new blog
 app.post('/submit', async (req, res) => {
